@@ -27,6 +27,25 @@ def lerArquivo(nome):
         print('Erro ao ler o arquivo!')
     else:
         cabeçalho('PESSOAS CADASTRADAS')
-        print(a.readlines()) #pega o conteudo do arquivo txt e salva cada linha como um item de uma lista
+        '''print(a.readlines()) #pega o conteudo do arquivo txt e salva cada linha como um item de uma lista'''
+        for linha in a:
+            dado = linha.split(';')
+            dado[1] = dado[1].replace('\n','')#remove o \n do fim de cada linha do cadastro
+            print(f'{dado[0]:<34}{dado[1]:>3} anos')
+    finally:
+        a.close()
 
 
+def cadastrar(arq, nome='desconhecido', idade=0):
+    try:
+        a = open(arq, 'at')#at é de appent text, ou seja, ele abre o arquivo e possibilita adicionar itens
+    except:
+        print('Erro ao ler o arquivo')
+    else:
+        try:
+            a.write(f'{nome};{idade}\n')
+        except:
+            print('Houve um erro na hora de escrever os dados.')
+        else:
+            print(f'Novo registro de {nome} adicionado')
+            a.close()#sempre lembrar de fechar o arquivo
