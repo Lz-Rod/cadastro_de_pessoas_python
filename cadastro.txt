@@ -1,0 +1,5 @@
+Luiz;31
+Vitor;75
+Anita;125
+Felipe;32
+Otávio;14
